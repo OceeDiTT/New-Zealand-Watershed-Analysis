@@ -20,3 +20,5 @@ Once the DEM has been conditioned, additional steps are performed using the upda
 - Determining flow accumulation:Flow accumulation calculates the number of upstream cells draining into each DEM cell. While not strictly required for watershed delineation, it can assist in identifying river channels, especially when outlet points are not located precisely on a channel cell.
 
 Following these procedures, it becomes possible to delineate the watershed upstream of the specified outlet point accurately.
+
+<img src="output/watershed.png" alt="">
