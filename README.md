@@ -16,8 +16,8 @@ After outlet points are identified, several preprocessing steps are required to 
 
 Once the DEM has been conditioned, additional steps are performed using the updated DEM to generate the necessary information for watershed delineation:
 
-- Determining flow directions: This step identifies the direction in which water would flow from each DEM cell, enabling tracing upstream from the outlet to delineate watershed boundaries.
-- Determining flow accumulation:Flow accumulation calculates the number of upstream cells draining into each DEM cell. While not strictly required for watershed delineation, it can assist in identifying river channels, especially when outlet points are not located precisely on a channel cell.
+4. `Determining flow directions:` This step identifies the direction in which water would flow from each DEM cell, enabling tracing upstream from the outlet to delineate watershed boundaries.
+5. `Determining flow accumulation:` Flow accumulation calculates the number of upstream cells draining into each DEM cell. While not strictly required for watershed delineation, it can assist in identifying river channels, especially when outlet points are not located precisely on a channel cell.
 
 Following these procedures, it becomes possible to delineate the watershed upstream of the specified outlet point accurately.
 
