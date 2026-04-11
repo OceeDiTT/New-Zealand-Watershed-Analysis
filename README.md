@@ -200,21 +200,13 @@ Analysis & Visualization
 
 ---
 
-## 🚀 Future Improvements
+## 🚀 Future Recommendations 
 
 - [ ] Automate outlet detection  
 - [ ] Integrate glacier datasets  
 - [ ] Multi-temporal DEM comparison  
 - [ ] Add slope & curvature analysis  
 - [ ] Perform statistical validation  
-
----
-
-## 📚 References
-
-- DEM Hydrological Processing Literature  
-- Alpine Fault Studies  
-- PySheds Documentation  
 
 ---
 
