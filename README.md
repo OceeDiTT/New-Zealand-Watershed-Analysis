@@ -1,24 +1,225 @@
-# New-Zealand-Watershed-Analysis
+<div align="center">
 
-The goal of this project was to analyze digital elevation data from a set of watersheds along the western flank of the Southern Alps of New Zealand. The study focused on watersheds located in the immediate hanging wall of the Alpine Fault, where rapid tectonic uplift driven by fault motion coincides with active fluvial and glacial erosion of the landscape. One of the objectives was to examine how various calculated values differ across watersheds and what these differences reveal about the ways rivers and glaciers may have shaped the surface of each watershed.
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=200&section=header&text=New%20Zealand%20Watershed%20Analysis&fontSize=30&fontColor=ffffff&animation=fadeIn" />
 
-## Background
-Watershed analysis involves examining the landscape and hydrology of land areas where surface water drains to a common outlet, such as a river, lake, or ocean. In this study, the focus was on understanding how factors such as watershed area and topographic relief vary across a set of river watersheds in the Southern Alps, with the aim of exploring relationships between landscape uplift and erosion. To achieve this, a series of quantitative values were calculated for each watershed and subsequently analyzed to assess spatial variability within the study area. The analysis required several steps, including loading digital elevation data for the region, delineating the watersheds of interest, evaluating the landscape characteristics of each watershed, and visualizing the results. The following sections provide a detailed examination of these processes and demonstrate how watershed analysis can be performed using Python.
+### 🏔️ DEM-Based Hydrological & Geomorphological Analysis  
+### *Southern Alps, New Zealand*
 
-## Methodology
-Watershed delineation involves identifying all points that lie upstream (or upslope) of a specified outlet on a digital elevation model (DEM). Outlet points can be determined in various ways; in this case study, they were selected visually using Google Maps by identifying locations where rivers along the western side of the New Zealand Alps, between approximately 42.4°S and 44.0°S, exit their valleys. This latitude range roughly corresponds to a linear segment of the Alpine Fault, which forms the boundary between the Australian and Pacific tectonic plates.
+![Python](https://img.shields.io/badge/Language-Python-blue?style=for-the-badge)
+![Analysis](https://img.shields.io/badge/Focus-Watershed%20Analysis-green?style=for-the-badge)
+![DEM](https://img.shields.io/badge/Data-DEM-orange?style=for-the-badge)
 
-After outlet points are identified, several preprocessing steps are required to ensure that watersheds can be accurately defined. Specifically, the DEM must be conditioned so that water flow paths can be determined, assuming that water moves to neighboring cells of lower elevation. This initial preprocessing is collectively referred to as hydrological conditioning and includes the following steps:
+</div>
 
-1. `Filling pits:` Pits are individual cells in the DEM with no neighboring cell at a lower elevation. Their elevations must be increased so that water can flow toward at least one neighboring cell.
-2. `Filling depressions:` Depressions are groups of cells lacking an outlet. Their elevations must similarly be adjusted to allow drainage to a downstream cell.
-3. `Resolving flats:` In flat regions, such as lakes, water cannot flow downhill. These areas must be modified to establish a continuous flow path toward the outlet.
+---
 
-Once the DEM has been conditioned, additional steps are performed using the updated DEM to generate the necessary information for watershed delineation:
+## 📖 Overview
 
-4. `Determining flow directions:` This step identifies the direction in which water would flow from each DEM cell, enabling tracing upstream from the outlet to delineate watershed boundaries.
-5. `Determining flow accumulation:` Flow accumulation calculates the number of upstream cells draining into each DEM cell. While not strictly required for watershed delineation, it can assist in identifying river channels, especially when outlet points are not located precisely on a channel cell.
+This project analyzes watershed characteristics along the **Southern Alps of New Zealand** using **Digital Elevation Models (DEMs)** and Python-based hydrological tools.
 
-Following these procedures, it becomes possible to delineate the watershed upstream of the specified outlet point accurately.
+It explores how **tectonic uplift** and **erosion (fluvial & glacial)** interact to shape landscape variability.
 
-<img src="output/watershed.png" alt="">
+---
+
+## 🎯 Project Objective
+
+- Delineate watersheds from DEM data  
+- Compute geomorphological metrics  
+- Compare watershed variability  
+- Interpret landscape evolution processes  
+
+---
+
+## 🗺️ Study Area
+
+- **Region:** Southern Alps, New Zealand  
+- **Latitude Range:** 42.4°S – 44.0°S  
+- **Tectonic Context:** Alpine Fault (Australian–Pacific plate boundary)
+
+---
+
+## ⚙️ Methodology (Interactive)
+
+<details>
+<summary><strong>🧭 Step 1: Outlet Selection</strong></summary>
+
+- Outlet points selected manually using Google Maps  
+- Defined as river exit points along western slopes  
+
+</details>
+
+---
+
+<details>
+<summary><strong>🧱 Step 2: DEM Conditioning</strong></summary>
+
+- Fill pits (remove isolated sinks)  
+- Fill depressions (ensure drainage continuity)  
+- Resolve flats (assign flow direction)  
+
+</details>
+
+---
+
+<details>
+<summary><strong>🌊 Step 3: Flow Analysis</strong></summary>
+
+- Compute flow direction  
+- Compute flow accumulation  
+- Identify drainage networks  
+
+</details>
+
+---
+
+<details>
+<summary><strong>🏞️ Step 4: Watershed Delineation</strong></summary>
+
+- Trace upstream contributing cells  
+- Generate watershed boundaries  
+
+</details>
+
+---
+
+## 💻 Reproducible Python Workflow
+
+Below is a simplified example using **PySheds**:
+
+```python
+from pysheds.grid import Grid
+
+# Load DEM
+grid = Grid.from_raster('dem.tif')
+dem = grid.read_raster('dem.tif')
+
+# Fill pits
+pit_filled_dem = grid.fill_pits(dem)
+
+# Fill depressions
+flooded_dem = grid.fill_depressions(pit_filled_dem)
+
+# Resolve flats
+inflated_dem = grid.resolve_flats(flooded_dem)
+
+# Flow direction
+flow_dir = grid.flowdir(inflated_dem)
+
+# Flow accumulation
+acc = grid.accumulation(flow_dir)
+
+# Define outlet (example coordinates)
+x, y = 1500000, 5200000
+
+# Delineate watershed
+catchment = grid.catchment(x=x, y=y, fdir=flow_dir, xytype='coordinate')
+
+# Clip DEM to watershed
+clipped = grid.clip_to(catchment)
+
+# Export result
+grid.to_raster(clipped, 'watershed_dem.tif')
+```
+
+---
+
+## 🔄 Workflow Summary
+
+```text
+Load DEM
+   ↓
+Fill Pits
+   ↓
+Fill Depressions
+   ↓
+Resolve Flats
+   ↓
+Flow Direction
+   ↓
+Flow Accumulation
+   ↓
+Outlet Selection
+   ↓
+Watershed Delineation
+   ↓
+Analysis & Visualization
+```
+
+---
+
+## 📊 Results
+
+<div align="center">
+
+<img src="output/watershed.png" width="700">
+
+</div>
+
+---
+
+## 🔍 Key Insights
+
+- Watersheds show **significant variability in relief and size**  
+- Areas near the Alpine Fault exhibit:
+  - Steeper slopes  
+  - Higher elevation gradients  
+- Evidence of **tectonic–erosion coupling**  
+- Spatial differences suggest varying dominance of:
+  - Fluvial processes  
+  - Glacial processes  
+
+---
+
+## 🔁 Reproducibility Guide
+
+<details>
+<summary><strong>📌 Click to expand</strong></summary>
+
+1. Download DEM (e.g., SRTM or LiDAR)  
+2. Install dependencies:
+   ```bash
+   pip install pysheds rasterio numpy matplotlib
+   ```
+3. Run preprocessing steps  
+4. Define outlet points  
+5. Execute watershed delineation  
+6. Visualize outputs  
+
+</details>
+
+---
+
+## 🛠️ Tools & Libraries
+
+- Python  
+- PySheds  
+- Rasterio / GDAL  
+- NumPy  
+- Matplotlib  
+- Google Maps  
+
+---
+
+## 🚀 Future Improvements
+
+- [ ] Automate outlet detection  
+- [ ] Integrate glacier datasets  
+- [ ] Multi-temporal DEM comparison  
+- [ ] Add slope & curvature analysis  
+- [ ] Perform statistical validation  
+
+---
+
+## 📚 References
+
+- DEM Hydrological Processing Literature  
+- Alpine Fault Studies  
+- PySheds Documentation  
+
+---
+
+<div align="center">
+
+### ⭐ Star this repo if you find it useful!
+
+</div>
