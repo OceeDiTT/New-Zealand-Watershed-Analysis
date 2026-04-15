@@ -13,7 +13,7 @@
 
 ---
 
-## 📖 Overview
+## Overview
 
 This project analyzes watershed characteristics along the **Southern Alps of New Zealand** using **Digital Elevation Models (DEMs)** and Python-based hydrological tools.
 
@@ -21,7 +21,7 @@ It explores how **tectonic uplift** and **erosion (fluvial & glacial)** interact
 
 ---
 
-## 🎯 Project Objective
+## Project Objective
 
 - Delineate watersheds from DEM data  
 - Compute geomorphological metrics  
@@ -30,7 +30,7 @@ It explores how **tectonic uplift** and **erosion (fluvial & glacial)** interact
 
 ---
 
-## 🗺️ Study Area
+## Study Area
 
 - **Region:** Southern Alps, New Zealand  
 - **Latitude Range:** 42.4°S – 44.0°S  
@@ -38,10 +38,10 @@ It explores how **tectonic uplift** and **erosion (fluvial & glacial)** interact
 
 ---
 
-## ⚙️ Methodology (Interactive)
+## Methodology (Interactive)
 
 <details>
-<summary><strong>🧭 Step 1: Outlet Selection</strong></summary>
+<summary><strong> Step 1: Outlet Selection</strong></summary>
 
 - Outlet points selected manually using Google Maps  
 - Defined as river exit points along western slopes  
@@ -51,7 +51,7 @@ It explores how **tectonic uplift** and **erosion (fluvial & glacial)** interact
 ---
 
 <details>
-<summary><strong>🧱 Step 2: DEM Conditioning</strong></summary>
+<summary><strong> Step 2: DEM Conditioning</strong></summary>
 
 - Fill pits (remove isolated sinks)  
 - Fill depressions (ensure drainage continuity)  
@@ -62,18 +62,18 @@ It explores how **tectonic uplift** and **erosion (fluvial & glacial)** interact
 ---
 
 <details>
-<summary><strong>🌊 Step 3: Flow Analysis</strong></summary>
+<summary><strong> Step 3: Flow Analysis</strong></summary>
 
 - Compute flow direction  
 - Compute flow accumulation  
-- Identify drainage networks  
+- Identify drainage networks   
 
 </details>
 
 ---
 
 <details>
-<summary><strong>🏞️ Step 4: Watershed Delineation</strong></summary>
+<summary><strong> Step 4: Watershed Delineation</strong></summary>
 
 - Trace upstream contributing cells  
 - Generate watershed boundaries  
@@ -123,7 +123,7 @@ grid.to_raster(clipped, 'watershed_dem.tif')
 
 ---
 
-## 🔄 Workflow Summary
+## Workflow Summary
 
 ```text
 Load DEM
@@ -147,7 +147,7 @@ Analysis & Visualization
 
 ---
 
-## 📊 Results
+## Results
 
 <div align="center">
 
@@ -157,7 +157,7 @@ Analysis & Visualization
 
 ---
 
-## 🔍 Key Insights
+## Key Insights
 
 - Watersheds show **significant variability in relief and size**  
 - Areas near the Alpine Fault exhibit:
@@ -170,7 +170,7 @@ Analysis & Visualization
 
 ---
 
-## 🔁 Reproducibility Guide
+## Reproducibility Guide
 
 <details>
 <summary><strong>📌 Click to expand</strong></summary>
@@ -189,7 +189,7 @@ Analysis & Visualization
 
 ---
 
-## 🛠️ Tools & Libraries
+## Tools & Libraries
 
 - Python  
 - PySheds  
@@ -200,7 +200,7 @@ Analysis & Visualization
 
 ---
 
-## 🚀 Future Recommendations 
+## Future Recommendations 
 
 - [ ] Automate outlet detection  
 - [ ] Integrate glacier datasets  
