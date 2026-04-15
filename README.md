@@ -173,7 +173,7 @@ Analysis & Visualization
 ## Reproducibility Guide
 
 <details>
-<summary><strong>📌 Click to expand</strong></summary>
+<summary><strong> Click to expand</strong></summary>
 
 1. Download DEM (e.g., SRTM or LiDAR)  
 2. Install dependencies:
